@@ -1,20 +1,24 @@
-const btnContainer = document.querySelector('.btn-container');
-const contentContainer = document.querySelector(".tab-container");
-const article = document.querySelector("article");
-const articlePhoto = document.querySelector(".article-photo");
-const articleText = document.querySelector(".article-text");
+//target = element that triggers the event
+//currenttarget = element that targets the event listener
 
-const buttons = document.querySelectorAll(".tab-btn");
+const about = document.querySelector('.about');
+const buttons = document.querySelectorAll('.tab-btn');
+const articles = document.querySelectorAll('.content');
 
-
-contentContainer.addEventListener("click", function (e) {
-    const id = e.target.dataset.id;
-    if (id) {
-        //remove hidden class from other buttons
-        buttons.forEach(function (btn) {
-
-            btn.classList.remove(".hidden");
-        });
+//get the data id associated with the buttons
+//then loop through all the buttons and remove the active class
+about.addEventListener('click', function (e) {
+    const buttonId = e.target.dataset.id;
+    if (buttonId) {
+        buttons.forEach(btn => {
+            btn.classList.remove("active");
+            //use event targeting to add the class to what you're clicking on 
+            e.target.classList.add("active");
+        })
+        articles.forEach(article => {
+            article.classList.remove("active");
+        })
+        const element = document.getElementById(buttonId);
+        element.classList.add("active");
     }
-})
-
+});
